@@ -53,13 +53,12 @@ public class Myservlet extends HttpServlet {
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         
-        //Reading the data from network
+        // Reading the data from network
         InputStream inputStream = connection.getInputStream();
         InputStreamReader reader = new InputStreamReader(inputStream);
-     // System.out.println(reader);
+       // System.out.println(reader);
         
-        //storing in string
-        
+        // storing in string
         StringBuilder responseContent = new StringBuilder();
         
         // For taking the input from the reader
@@ -70,6 +69,12 @@ public class Myservlet extends HttpServlet {
         }
         System.out.println(responseContent);
         scanner.close();
+        
+        // Parse the JSON response to extract temperature, date, and humidity
+        Gson g = new Gson();
+        JsonObject jsonObject = gson.fromJson(responseContent.toString(), JsonObject.class);
 	}
+	
+	
 
 }
